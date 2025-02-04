@@ -42,7 +42,7 @@ The lab network we will be working with looks like the diagram below.
 
 <li>SSH to your Pod three (3) times, ADJUST the command below for your Pod ##!</li>
 
-<code> ssh -p 3389 -l ciscolive IP-ADDR-TABLE-ABOVE </code>
+<code> ssh -p 443 -l ciscolive IP-ADDR-TABLE-ABOVE </code>
 
 SSH Username & Password for the Pod & the Cat9300 switches are all the same.
 <br>
@@ -54,7 +54,7 @@ SSH Username & Password for the Pod & the Cat9300 switches are all the same.
 
 <li> The first SSH session will be used for managing Ansible and the files. </li>
 We will need to change directories to the CLUS folder for this lab. <br>
-<code> cd clemea2024-devwks-2008 </code>
+<code> cd clemea2025-devwks-2008 </code>
 <br><br>
 
 <li> Assure you have the latest code & docs from Github!  </li>
