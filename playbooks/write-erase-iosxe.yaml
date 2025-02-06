@@ -1,0 +1,28 @@
+---
+- name: Write Erase Reload an IOS XE Device
+  hosts: iosxe
+  gather_facts: false
+  connection: network_cli
+  vars_files:
+    - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
+
+  tasks:
+
+    - name: 01 - Write erase the config so the switch comes up clean & ZTP
+      cisco.ios.ios_command:
+        commands:
+          - command: "write erase"
+            prompt: "confirm"
+            answer: "y"
+
+
+    - name: 02 - Reload the XE device
+      cisco.ios.ios_command:
+        commands:
+          - command: "reload"
+            prompt:
+#              - "Save?"
+              - "confirm"
+            answer:
+#              - "y"
+              - "y"
