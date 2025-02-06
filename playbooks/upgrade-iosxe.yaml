@@ -40,6 +40,9 @@
           - 128.107.223.248
           - "{{ boot_image }}"
           - "{{ boot_image }}"
+        vars:
+          - ansible_command_timeout: 31
+
 
     - name: Timmay HARD STOP this Playbook
       ansible.builtin.meta: end_play
