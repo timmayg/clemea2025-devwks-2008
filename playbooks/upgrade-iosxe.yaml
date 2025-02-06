@@ -5,10 +5,10 @@
   connection: network_cli
   
   vars_files:
-    - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
+    - ~/clemea2025-devwks-2008/vaults/default.vault
   vars:
     boot_image: "cat9k_iosxe.17.12.04.SPA.bin"
-    ansible_command_timeout: 1200
+    ansible_command_timeout: 2400   # multiple downloads at the same time can make this slow
 
   tasks:
 #    - name: Shut down interface Ten1/0/3
