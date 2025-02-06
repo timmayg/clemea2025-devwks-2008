@@ -9,7 +9,7 @@
    - ~/clemea2025-devwks-2008/vaults/encrypted-pass.vault
 
   tasks:
-    - name: 04a Task to Shutdown the Interface
+    - name: 04a1 Task to Shutdown the Interface
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -19,6 +19,20 @@
                     <name>1/0/1</name>
                     <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
                   </TenGigabitEthernet>
+                </interface>
+              </native>
+            </config>
+
+    - name: 04a2 Task to Shutdown the Interface
+      ansible.netcommon.netconf_config:
+        xml: |
+            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                <interface>
+                  <GigabitEthernet>
+                    <name>1/0/1</name>
+                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
+                  </GigabitEthernet>
                 </interface>
               </native>
             </config>
