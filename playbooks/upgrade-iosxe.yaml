@@ -22,7 +22,7 @@
       cisco.ios.ios_command:
         commands:
           - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
-
+      timeout: 600 
 
     - name: Timmay HARD STOP this Playbook
       ansible.builtin.meta: end_play
