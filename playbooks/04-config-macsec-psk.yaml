@@ -118,25 +118,67 @@
               </native>
             </config>
 
+#    - name: 04g Task to Configure MACsec Network Link on the Interface
+#      ansible.netcommon.netconf_config:
+#        xml: |
+#            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+#              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+#                <interface>
+#                  <TenGigabitEthernet>
+#                    <name>1/0/1</name>
+#                    <macsec-option xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+#                      <macsec>
+#                        <network-link/>
+#                      </macsec>
+#                    </macsec-option>
+#                  </TenGigabitEthernet>
+#                </interface>
+#              </native>
+#            </config>
+
+
+    - name: 04g Task to Configure MACsec Network Link on the Interface on the Cat9300X
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <TenGigabitEthernet>
+                  <name>1/0/1</name>
+                  <macsec-option xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                    <macsec>
+                      <network-link/>
+                    </macsec>
+                  </macsec-option>
+                </TenGigabitEthernet>
+              </interface>
+            </native>
+          </config>
+      register: result_macsec_cat9kx
+      failed_when: false
+
     - name: 04g Task to Configure MACsec Network Link on the Interface
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
               <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                 <interface>
-                  <TenGigabitEthernet>
+                  <GigabitEthernet>
                     <name>1/0/1</name>
                     <macsec-option xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
                       <macsec>
                         <network-link/>
                       </macsec>
                     </macsec-option>
-                  </TenGigabitEthernet>
+                  </GigabitEthernet>
                 </interface>
               </native>
             </config>
+      register: result_macsec_cat9k
+      failed_when: false
 
-    - name: 04h Task to No Shut Interface
+
+    - name: 04h Task to No Shut Interface on the Cat9300X
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -149,3 +191,21 @@
                 </interface>
               </native>
             </config>
+      register: result_noshut_cat9kx
+      failed_when: false
+
+    - name: 04h Task to No Shut Interface
+      ansible.netcommon.netconf_config:
+        xml: |
+            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                <interface>
+                  <GigabitEthernet>
+                    <name>1/0/1</name>
+                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
+                  </GigabitEthernet>
+                </interface>
+              </native>
+            </config>
+      register: result_noshut_cat9k
+      failed_when: false
