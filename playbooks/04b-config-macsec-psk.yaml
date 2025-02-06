@@ -9,21 +9,21 @@
    - ~/clemea2025-devwks-2008/vaults/encrypted-pass.vault
 
   tasks:
-    - name: 04a Task to Shutdown the Interface
-      ansible.netcommon.netconf_config:
-        xml: |
-            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1/0/1</name>
-                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-            </config>
+#    - name: Task to Shutdown the Interface
+#      ansible.netcommon.netconf_config:
+#        xml: |
+#            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+#              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+#                <interface>
+#                  <GigabitEthernet>
+#                    <name>1/0/1</name>
+#                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
+#                  </GigabitEthernet>
+#                </interface>
+#              </native>
+#            </config>
 
-    - name: 04b Task to Configure MKA PSK CKN and CAK
+    - name: 04a Task to Configure MKA PSK CKN and CAK
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -47,7 +47,7 @@
               </native>
             </config>
 
-    - name: 04c Task to Configure MKA Policy
+    - name: 04b Task to Configure MKA Policy
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -66,21 +66,21 @@
               </native>
             </config>
 
-    - name: 04d Task to Configure Interface Description
-      ansible.netcommon.netconf_config:
-        xml: |
-            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1/0/1</name>
-                    <description>MACsec Encrypted Link</description>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-            </config>
+#    - name: Task to Configure Interface Description
+#      ansible.netcommon.netconf_config:
+#        xml: |
+#            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+#              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+#                <interface>
+#                  <GigabitEthernet>
+#                    <name>1/0/1</name>
+#                    <description>MACsec Encrypted Link</description>
+#                  </GigabitEthernet>
+#                </interface>
+#              </native>
+#            </config>
 
-    - name: 04e Task to Configure the Interface with the MKA Policy
+    - name: 04c Task to Configure the Interface with the MKA Policy
       tags:
         - apply_mka_int
       ansible.netcommon.netconf_config:
@@ -100,7 +100,7 @@
               </native>
             </config>
 
-    - name: 04f Task to Configure the Interface with the MKA Key
+    - name: 04d Task to Configure the Interface with the MKA Key
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -120,7 +120,7 @@
               </native>
             </config>
 
-    - name: 04g Task to Configure MACsec Network Link on the Interface
+    - name: 04e Task to Configure MACsec Network Link on the Interface
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -138,7 +138,7 @@
               </native>
             </config>
 
-    - name: 04h Task to No Shut Interface
+    - name: 04f Task to No Shut Interface
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
