@@ -19,18 +19,18 @@
             answer: "y"
 
 
-#    - name: 02 - Copy IOS XE bin file from podadmin2
-#      cli_command:
-#        command: "copy http: flash:"
-#        check_all: true
-#        prompt:
-#          - "Address or name of remote host"
-#          - "Source filename \\[\\]?"
-#          - "Destination filename [{{ boot_image }}]?"
-#        answer:
-#          - "128.107.223.248"
-#          - "{{ boot_image }}"
-#          - "{{ boot_image }}"
+    - name: 02 - Copy IOS XE bin file from podadmin2
+      cli_command:
+        command: "copy http: flash:"
+        check_all: true
+        prompt:
+          - "Address or name of remote host"
+          - "Source filename \\[\\]?"
+          - "Destination filename [{{ boot_image }}]?"
+        answer:
+          - "128.107.223.248"
+          - "{{ boot_image }}"
+          - "{{ boot_image }}"
 
 
 #    - name: Timmay HARD STOP this Playbook
