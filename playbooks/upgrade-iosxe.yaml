@@ -16,14 +16,18 @@
         lines:
           - shutdown
         parents: interface Ten1/0/3
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: Shut down interface Gig1/0/3
       cisco.ios.ios_config:
         lines:
           - shutdown
         parents: interface Gig1/0/3
-      ignore_errors: yes
+      ignore_errors: true
+
+    - name: Timmay HARD STOP this Playbook
+      ansible.builtin.meta: end_play
+
 
     - name: 01 - Remove inactive installer files
       cisco.ios.ios_command:
