@@ -45,7 +45,7 @@
 
     - name: 01b - Copy IOS XE bin file from podadmin2
       cli_command:
-        command: "copy http:// flash:"
+        command: "copy http: flash:"
         check_all: true
         prompt:
           - "Address or name of remote host"
