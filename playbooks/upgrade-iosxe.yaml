@@ -11,7 +11,7 @@
     ansible_command_timeout: 1200
 
   tasks:
-    - name: 01a - Remove inactive installer files
+    - name: 01 - Remove inactive installer files
       cisco.ios.ios_command:
         commands:
           - command: "install remove inactive"
@@ -19,68 +19,44 @@
             answer: "y"
 
 
-#    - name: 01b - Copy IOS XE bin file from podadmin2
-#      cisco.ios.ios_command:
-#        commands:
-#          - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
-#          - prompt: "Destination filename \[{{ boot_image }}\]? "
-#          - answer: "/r"
-#        wait_for: result contains 'bytes copied'
-#        interval: 600
-
-
-#    - name: 01b - Copy IOS XE bin file from podadmin2
+#    - name: 02 - Copy IOS XE bin file from podadmin2
 #      cli_command:
-#        command: 'copy http: flash:'
+#        command: "copy http: flash:"
 #        check_all: true
 #        prompt:
 #          - "Address or name of remote host"
-#          - "Source filename []?"
-#          - "Destination filename ['{{ boot_image }}'']?"
+#          - "Source filename \\[\\]?"
+#          - "Destination filename [{{ boot_image }}]?"
 #        answer:
-#          - 128.107.223.248
+#          - "128.107.223.248"
 #          - "{{ boot_image }}"
 #          - "{{ boot_image }}"
 
 
-    - name: 01b - Copy IOS XE bin file from podadmin2
-      cli_command:
-        command: "copy http: flash:"
-        check_all: true
-        prompt:
-          - "Address or name of remote host"
-          - "Source filename \\[\\]?"
-          - "Destination filename [{{ boot_image }}]?"
-        answer:
-          - "128.107.223.248"
-          - "{{ boot_image }}"
-          - "{{ boot_image }}"
+#    - name: Timmay HARD STOP this Playbook
+#      ansible.builtin.meta: end_play
 
 
-    - name: Timmay HARD STOP this Playbook
-      ansible.builtin.meta: end_play
-
-
-    - name: 01 - Remove existing boot system configuration
+    - name: 03 - Remove existing boot system configuration
       cisco.ios.ios_config:
         lines:
           - no boot system
 
 
-    - name: 02 - Set new boot system image
+    - name: 04 - Set new boot system image
       cisco.ios.ios_config:
         lines:
           - "boot system flash:{{ boot_image }}"
 
 
 
-    - name: 03 - Save the running configuration
+    - name: 05 - Save the running configuration
       cisco.ios.ios_command:
         commands:
           - write memory
 
 
-    - name: 04 - Write erase the config so the switch comes up clean & ZTP
+    - name: 06 - Write erase the config so the switch comes up clean & ZTP
       cisco.ios.ios_command:
         commands:
           - command: "write erase"
@@ -95,7 +71,7 @@
 #            prompt: "Proceed with reload\\? \\[confirm\\]"
 #            answer: "\n"
 
-    - name: 05 - Reload the XE device
+    - name: 07 - Reload the XE device
       cisco.ios.ios_command:
         commands:
           - command: "reload"
