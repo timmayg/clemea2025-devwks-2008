@@ -3,10 +3,26 @@
   hosts: iosxe
   gather_facts: false
   connection: network_cli
-#  vars:
-#    boot_image_path: "cat9k_iosxe.17.09.04.SPA.bin"
+  vars:
+    boot_image: "cat9k_iosxe.17.09.04.SPA.bin"
 
   tasks:
+    - name: 01a - Remove inactive installer files
+      cisco.ios.ios_command:
+        commands:
+          - command: "install remove inactive"
+            prompt: "files?"
+            answer: "y"
+
+    - name: Timmay HARD STOP this Playbook
+      ansible.builtin.meta: end_play
+
+
+    - name: 01b - Copy IOS XE bin file from podadmin2
+      cisco.ios.ios_command:
+        commands:
+          - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
+
 
     - name: 01 - Remove existing boot system configuration
       cisco.ios.ios_config:
@@ -17,7 +33,7 @@
     - name: 02 - Set new boot system image
       cisco.ios.ios_config:
         lines:
-          - "boot system {{ boot_image_path }}"
+          - "boot system flash:{{ boot_image }}"
         # - "boot system flash:cat9k_iosxe.16.12.04.SPA.bin"
 
 
