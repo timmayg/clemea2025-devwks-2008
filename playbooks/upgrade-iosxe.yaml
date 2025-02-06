@@ -29,7 +29,7 @@
 
 
     - name: 01b - Copy IOS XE bin file from podadmin2
-      cisco.ios.cli_command:
+      cli_command:
         command: 'copy http: flash:'
         check_all: true
         prompt: 
