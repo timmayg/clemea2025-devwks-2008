@@ -7,7 +7,7 @@
   vars_files:
     - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
   vars:
-    boot_image: "cat9k_iosxe.17.09.04.SPA.bin"
+    boot_image: "cat9k_iosxe.17.12.04.SPA.bin"
 
   tasks:
     - name: 01a - Remove inactive installer files
@@ -22,7 +22,7 @@
       cisco.ios.ios_command:
         commands:
           - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
-      timeout: 600 
+      timeout: 600
 
     - name: Timmay HARD STOP this Playbook
       ansible.builtin.meta: end_play
@@ -38,7 +38,7 @@
       cisco.ios.ios_config:
         lines:
           - "boot system flash:{{ boot_image }}"
-        # - "boot system flash:cat9k_iosxe.16.12.04.SPA.bin"
+
 
 
     - name: 03 - Save the running configuration
