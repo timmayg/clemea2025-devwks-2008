@@ -12,29 +12,29 @@ The lab network we will be working with looks like the diagram below.
 
 | Workstation #  | Pod IP Address  |
 | -------------- | ----------- |
-| Workstation #1  | pod01-xelab.cisco.com   |
-| Workstation #2  | pod02-xelab.cisco.com   |
-| Workstation #3  | pod03-xelab.cisco.com   |
-| Workstation #4  | pod04-xelab.cisco.com   |
-| Workstation #5  | pod05-xelab.cisco.com   |
-| Workstation #6  | pod06-xelab.cisco.com   |
-| Workstation #7  | pod07-xelab.cisco.com   |
-| Workstation #8  | pod08-xelab.cisco.com   |
-| Workstation #9  | pod09-xelab.cisco.com   |
-| Workstation #10  | pod10-xelab.cisco.com   |
-| Workstation #11  | pod11-xelab.cisco.com   |
-| Workstation #12  | pod12-xelab.cisco.com   |
-| Workstation #13  | pod13-xelab.cisco.com   |
-| Workstation #14  | pod14-xelab.cisco.com   |
-| Workstation #15  | pod15-xelab.cisco.com   |
-| Workstation #16  | pod16-xelab.cisco.com   |
-| Workstation #17 (if needed)  | pod17-xelab.cisco.com   |
-| Workstation #18 (if needed) | pod018-xelab.cisco.com   | 
-| Workstation #19 (if needed) | pod19-xelab.cisco.com   |
-| Workstation #20 (if needed) | pod20-xelab.cisco.com   |
-| Workstation #21 (if needed) | pod21-xelab.cisco.com   |
-| Workstation #22 (if needed) | pod22-xelab.cisco.com   |
-| Lab Admin Wkstn #29  | pod29-xelab.cisco.com   |
+| Workstation #1  | 128.107.223.201   |
+| Workstation #2  | 128.107.223.202   |
+| Workstation #3  | 128.107.223.203   |
+| Workstation #4  | 128.107.223.204   |
+| Workstation #5  | 128.107.223.205   |
+| Workstation #6  | 128.107.223.206   |
+| Workstation #7  | 128.107.223.207   |
+| Workstation #8  | 128.107.223.208   |
+| Workstation #9  | 128.107.223.209   |
+| Workstation #10  | 128.107.223.210   |
+| Workstation #11  | 128.107.223.211   |
+| Workstation #12  | 128.107.223.212   |
+| Workstation #13  | 128.107.223.213   |
+| Workstation #14  | 128.107.223.214   |
+| Workstation #15  | 128.107.223.215   |
+| Workstation #16  | 128.107.223.216   |
+| Workstation #17 (if needed)  | 128.107.223.217   |
+| Workstation #18 (if needed) | 128.107.223.218   | 
+| Workstation #19 (if needed) | 128.107.223.218   |
+| Workstation #20 (if needed) | 128.107.223.220   |
+| Workstation #21 (if needed) | 128.107.223.221   |
+| Workstation #22 (if needed) | 128.107.223.222   |
+| Lab Admin Wkstn #29  | 128.107.223.229   |
 
 <li>Open 3 Terminal sessions on your workstation. </li>
 
