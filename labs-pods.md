@@ -61,13 +61,18 @@ We will need to change directories to the CLUS folder for this lab. <br>
 <code> git pull </code>
 <br><br>
 
+<li> Refresh the SSH Keys on the Ansible Controller  </li>
+<code> ./cat9k-ssh-key.sh </code>
+<br><br>
+
+
 <li> The second SSH session will be a jump box for you to get to the first Cat9300 switch. </li>
 
 SSH Username & Password for the Pod & the Cat9300 switches are all the same.
 <br>
 **User: ciscolive**
 <br>
-**Password: ciscolive123**
+**Password: PROVIDED ON LAB DAY**
 <br>
 
 <code> ssh 10.1.1.5 </code>
