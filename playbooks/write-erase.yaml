@@ -8,12 +8,12 @@
 
   tasks:
 
-    - name: 05 - Save the running configuration
+    - name: 01 - Save the running configuration
       cisco.ios.ios_command:
         commands:
           - write memory
 
-    - name: 01 - Write erase the config so the switch comes up clean & ZTP
+    - name: 02 - Write erase the config so the switch comes up clean & ZTP
       cisco.ios.ios_command:
         commands:
           - command: "write erase"
@@ -21,7 +21,7 @@
             answer: "y"
 
 
-    - name: 02 - Reload the XE device
+    - name: 03 - Reload the XE device
       cisco.ios.ios_command:
         commands:
           - command: "reload"
