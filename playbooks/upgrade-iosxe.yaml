@@ -22,7 +22,7 @@
       cisco.ios.ios_command:
         commands:
           - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
-        wait_for: 600
+        wait_for: result contains 'bytes copied'
 
     - name: Timmay HARD STOP this Playbook
       ansible.builtin.meta: end_play
