@@ -61,7 +61,7 @@ We will need to change directories to the CLUS folder for this lab. <br>
 <code> git pull </code>
 <br><br>
 
-<li> Refresh the SSH Keys on the Ansible Controller  </li>
+<li> Refresh the SSH Keys on the Ubuntu host \ Ansible Controller  </li>
 <code> ./cat9k-ssh-key.sh </code>
 <br><br>
 
