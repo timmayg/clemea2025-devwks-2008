@@ -49,7 +49,7 @@
         check_all: true
         prompt:
           - "Address or name of remote host"
-          - "Source filename []?"
+          - "Source filename \\[\\]?"
           - "Destination filename [{{ boot_image }}]?"
         answer:
           - "128.107.223.248"
