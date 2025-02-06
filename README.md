@@ -1,6 +1,6 @@
 # Cisco Live EMEA 2025
 
-<img src="/images/10-01-lab-workstation-web.png" alt="Fresh Lab Workstation" width=600>
+<img src="/images/devwks-2008-banner.png" alt="Cisco Live DEVWKS-2008 Banner" width=600>
 <br><br>
 
 # DEVWKS-2008 - Reducing the Attack Surface of IOS XE with Ansible
