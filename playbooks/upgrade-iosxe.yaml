@@ -3,6 +3,9 @@
   hosts: iosxe
   gather_facts: false
   connection: network_cli
+  
+  vars_files:
+    - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
   vars:
     boot_image: "cat9k_iosxe.17.09.04.SPA.bin"
 
