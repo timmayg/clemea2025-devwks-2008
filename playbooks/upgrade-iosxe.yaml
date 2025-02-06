@@ -8,6 +8,7 @@
     - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
   vars:
     boot_image: "cat9k_iosxe.17.12.04.SPA.bin"
+    ansible_command_timeout: 31
 
   tasks:
     - name: 01a - Remove inactive installer files
@@ -40,8 +41,7 @@
           - 128.107.223.248
           - "{{ boot_image }}"
           - "{{ boot_image }}"
-        vars:
-          - ansible_command_timeout: 31
+
 
 
     - name: Timmay HARD STOP this Playbook
