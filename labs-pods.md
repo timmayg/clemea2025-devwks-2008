@@ -29,10 +29,10 @@ The lab network we will be working with looks like the diagram below.
 | Workstation #15  | 128.107.223.215   |
 | Workstation #16  | 128.107.223.216   |
 | Workstation #17 (if needed)  | 128.107.223.217   |
-| Workstation #18 (if needed) | 128.107.223.221   | 
-| Workstation #19 (if needed) | 128.107.223.222   |
+| Workstation #18 (if needed) | 128.107.223.218   | 
+| Workstation #19 (if needed) | 128.107.223.218   |
 | Workstation #20 (if needed) | 128.107.223.220   |
-| Lab Admin  | 128.107.223.228   |
+| Lab Admin Wkstn #29  | 128.107.223.229   |
 
 <li>Open 3 Terminal sessions on your workstation. </li>
 
