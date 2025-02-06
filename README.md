@@ -1,4 +1,8 @@
 # Cisco Live EMEA 2025
+
+<img src="/images/10-01-lab-workstation-web.png" alt="Fresh Lab Workstation" width=600>
+<br><br>
+
 # DEVWKS-2008 - Reducing the Attack Surface of IOS XE with Ansible
 
 Thank you for spending the next 45 minutes with me. Once we are complete, 
