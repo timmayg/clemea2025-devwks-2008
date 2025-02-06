@@ -1,0 +1,54 @@
+---
+- name: Upgrade or Downgrade IOS XE versions in Bundle Mode
+  hosts: iosxe
+  gather_facts: false
+  connection: network_cli
+#  vars:
+#    boot_image_path: "cat9k_iosxe.17.09.04.SPA.bin"
+
+  tasks:
+
+    - name: 01 - Remove existing boot system configuration
+      cisco.ios.ios_config:
+        lines:
+          - no boot system
+
+
+    - name: 02 - Set new boot system image
+      cisco.ios.ios_config:
+        lines:
+          - "boot system {{ boot_image_path }}"
+        # - "boot system flash:cat9k_iosxe.16.12.04.SPA.bin"
+
+
+    - name: 03 - Save the running configuration
+      cisco.ios.ios_command:
+        commands:
+          - write memory
+
+
+    - name: 04 - Write erase the config so the switch comes up clean & ZTP
+      cisco.ios.ios_command:
+        commands:
+          - command: "write erase"
+            prompt: "confirm"
+            answer: "y"
+
+# This worked
+#    - name: Reload the XE device
+#      cisco.ios.ios_command:
+#        commands:
+#          - command: "reload"
+#            prompt: "Proceed with reload\\? \\[confirm\\]"
+#            answer: "\n"
+
+    - name: 05 - Reload the XE device
+      cisco.ios.ios_command:
+        commands:
+          - command: "reload"
+            prompt:
+              - "Save?"
+              - "confirm"
+            answer:
+              - "y"
+              - "y"
