@@ -18,18 +18,28 @@
             answer: "y"
 
 
-    - name: 01b - Copy IOS XE bin file from podadmin2
-      cisco.ios.ios_command:
-        commands:
-          - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
-          - prompt: "Destination filename \[{{ boot_image }}\]? "
-          - answer: "/r"
-
+#    - name: 01b - Copy IOS XE bin file from podadmin2
+#      cisco.ios.ios_command:
+#        commands:
+#          - command: "copy http://128.107.223.248/'{{ boot_image }}' flash:'{{ boot_image }}'"
+#          - prompt: "Destination filename \[{{ boot_image }}\]? "
+#          - answer: "/r"
 #        wait_for: result contains 'bytes copied'
 #        interval: 600
 
 
-
+    - name: 01b - Copy IOS XE bin file from podadmin2
+      cisco.ios.cli_command:
+        command: 'copy http: flash:'
+        check_all: true
+        prompt: 
+          - "Address or name of remote host"
+          - "Source filename"
+          - "Destination filename"
+        answer:
+          - 128.107.223.248
+          - "{{ boot_image }}"
+          - "{{ boot_image }}"
 
     - name: Timmay HARD STOP this Playbook
       ansible.builtin.meta: end_play
