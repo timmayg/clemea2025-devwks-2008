@@ -33,8 +33,8 @@
 #          - "{{ boot_image }}"
 
 
-#    - name: Timmay HARD STOP this Playbook
-#      ansible.builtin.meta: end_play
+    - name: Timmay HARD STOP this Playbook
+      ansible.builtin.meta: end_play
 
 
     - name: 03 - Remove existing boot system configuration
@@ -46,7 +46,11 @@
     - name: 04 - Set new boot system image
       cisco.ios.ios_config:
         lines:
-          - "boot system flash:{{ boot_image }}"
+          - "boot system flash:/{{ boot_image }}"
+
+    - name: Timmay HARD STOP this Playbook
+      ansible.builtin.meta: end_play
+
 
 
 
