@@ -22,6 +22,8 @@
                 </interface>
               </native>
             </config>
+      register: result_shut_cat9kx
+      failed_when: false
 
     - name: 04a2 Task to Shutdown the Interface
       ansible.netcommon.netconf_config:
@@ -36,6 +38,9 @@
                 </interface>
               </native>
             </config>
+      register: result_shut_cat9k
+      failed_when: false
+
 
     - name: 04b Task to Configure MKA PSK CKN and CAK
       ansible.netcommon.netconf_config:
