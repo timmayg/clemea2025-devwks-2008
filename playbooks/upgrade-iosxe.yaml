@@ -11,47 +11,38 @@
     ansible_command_timeout: 1200
 
   tasks:
-#    - name: 01 - Remove inactive installer files
-#      cisco.ios.ios_command:
-#        commands:
-#          - command: "install remove inactive"
-#            prompt: "files?"
-#            answer: "y"
+    - name: 01 - Remove inactive installer files
+      cisco.ios.ios_command:
+        commands:
+          - command: "install remove inactive"
+            prompt: "files?"
+            answer: "y"
 
 
-#    - name: 02 - Copy IOS XE bin file from podadmin2
-#      cli_command:
-#        command: "copy http: flash:"
-#        check_all: true
-#        prompt:
-#          - "Address or name of remote host"
-#          - "Source filename \\[\\]?"
-#          - "Destination filename [{{ boot_image }}]?"
-#        answer:
-#          - "128.107.223.248"
-#          - "{{ boot_image }}"
-#          - "{{ boot_image }}"
+    - name: 02 - Copy IOS XE bin file from podadmin2
+      cli_command:
+        command: "copy http: flash:"
+        check_all: true
+        prompt:
+          - "Address or name of remote host"
+          - "Source filename \\[\\]?"
+          - "Destination filename [{{ boot_image }}]?"
+        answer:
+          - "128.107.223.248"
+          - "{{ boot_image }}"
+          - "{{ boot_image }}"
 
 
-#    - name: Timmay HARD STOP this Playbook
-#      ansible.builtin.meta: end_play
+    - name: 03 - Remove existing boot system configuration
+      cisco.ios.ios_config:
+        lines:
+          - no boot system
 
 
-#    - name: 03 - Remove existing boot system configuration
-#      cisco.ios.ios_config:
-#        lines:
-#          - no boot system
-
-
-#    - name: 04 - Set new boot system image
-#      cisco.ios.ios_config:
-#        lines:
-#          - "boot system flash:/{{ boot_image }}"
-
-#    - name: Timmay HARD STOP this Playbook
-#      ansible.builtin.meta: end_play
-
-
+    - name: 04 - Set new boot system image
+      cisco.ios.ios_config:
+        lines:
+          - "boot system flash:/{{ boot_image }}"
 
 
     - name: 05 - Save the running configuration
@@ -67,7 +58,7 @@
             prompt: "confirm"
             answer: "y"
 
-# This worked
+# This works if only one prompt
 #    - name: Reload the XE device
 #      cisco.ios.ios_command:
 #        commands:
@@ -85,3 +76,6 @@
             answer:
               - "y"
               - "y"
+
+#    - name: Timmay HARD STOP this Playbook
+#      ansible.builtin.meta: end_play
