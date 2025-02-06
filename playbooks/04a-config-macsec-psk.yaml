@@ -9,7 +9,7 @@
    - ~/clemea2025-devwks-2008/vaults/encrypted-pass.vault
 
   tasks:
-    - name: 04a1 Task to Shutdown the Interface
+    - name: 04a Task to Shutdown the Interface
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -22,24 +22,6 @@
                 </interface>
               </native>
             </config>
-      register: result_shut_cat9kx
-      failed_when: false
-
-    - name: 04a2 Task to Shutdown the Interface
-      ansible.netcommon.netconf_config:
-        xml: |
-            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1/0/1</name>
-                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-            </config>
-      register: result_shut_cat9k
-      failed_when: false
 
 
     - name: 04b Task to Configure MKA PSK CKN and CAK
@@ -99,6 +81,7 @@
               </native>
             </config>
 
+
     - name: 04e Task to Configure the Interface with the MKA Policy
       ansible.netcommon.netconf_config:
         xml: |
@@ -116,6 +99,7 @@
                 </interface>
               </native>
             </config>
+
 
     - name: 04f Task to Configure the Interface with the MKA Key
       ansible.netcommon.netconf_config:
@@ -137,6 +121,7 @@
               </native>
             </config>
 
+
 #    - name: 04g Task to Configure MACsec Network Link on the Interface
 #      ansible.netcommon.netconf_config:
 #        xml: |
@@ -156,7 +141,7 @@
 #            </config>
 
 
-    - name: 04g Task to Configure MACsec Network Link on the Interface on the Cat9300X
+    - name: 04g Task to Configure MACsec Network Link on the Interface
       ansible.netcommon.netconf_config:
         xml: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -173,28 +158,6 @@
               </interface>
             </native>
           </config>
-      register: result_macsec_cat9kx
-      failed_when: false
-
-    - name: 04g Task to Configure MACsec Network Link on the Interface
-      ansible.netcommon.netconf_config:
-        xml: |
-            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1/0/1</name>
-                    <macsec-option xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
-                      <macsec>
-                        <network-link/>
-                      </macsec>
-                    </macsec-option>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-            </config>
-      register: result_macsec_cat9k
-      failed_when: false
 
 
     - name: 04h Task to No Shut Interface on the Cat9300X
@@ -210,21 +173,5 @@
                 </interface>
               </native>
             </config>
-      register: result_noshut_cat9kx
-      failed_when: false
 
-    - name: 04h Task to No Shut Interface
-      ansible.netcommon.netconf_config:
-        xml: |
-            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1/0/1</name>
-                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-            </config>
-      register: result_noshut_cat9k
-      failed_when: false
+
