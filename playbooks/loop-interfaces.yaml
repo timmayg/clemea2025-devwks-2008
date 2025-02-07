@@ -15,19 +15,20 @@
 
   tasks:
 
-    - name: Task to Shutdown Interface Gig1/0/1
+    - name: Shutdown Interface Based on Host
       ansible.netcommon.netconf_config:
         xml: |
-            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-                <interface>
-                  <GigabitEthernet>
-                    <name>1/0/1</name>
-                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
-                  </GigabitEthernet>
-                </interface>
-              </native>
-            </config>
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }}>
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
 
     - name: No Shut Interfaces Based on Host
       ansible.netcommon.netconf_config:
