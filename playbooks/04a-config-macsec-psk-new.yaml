@@ -16,6 +16,29 @@
 
   tasks:
 
+
+    - name: 04f No Shut Interface
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }} xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <shutdown xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native" nc:operation="delete"/>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
+
+    - name: Timmay HARD STOP the Playbook
+      ansible.builtin.meta: end_play
+
+
+
+
+
     - name: 04a Task to Configure MKA PSK CKN and CAK
       ansible.netcommon.netconf_config:
         xml: |
@@ -120,6 +143,25 @@
             </native>
           </config>
       when: inventory_hostname in interface_mapping
+
+    - name: 04f No Shut Interface
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }} xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <shutdown xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native" nc:operation="delete"/>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
+
+    - name: Timmay HARD STOP the Playbook
+      ansible.builtin.meta: end_play
+
 
 
     - name: 04f No Shut Interface
