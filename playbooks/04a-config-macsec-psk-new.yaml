@@ -40,6 +40,7 @@
               </native>
             </config>
 
+
     - name: 04b Build the MKA Policy, use AES-256-GCM
       ansible.netcommon.netconf_config:
         xml: |
