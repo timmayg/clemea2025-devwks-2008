@@ -47,7 +47,7 @@
               <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
                 <mka>
                   <policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
-                    <name>MKA_G-1-0-1</name>
+                    <name>MKA_POLICY</name>
                     <macsec-cipher-suite>gcm-aes-256</macsec-cipher-suite>
                   </policy>
                   <suppress xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
@@ -70,7 +70,7 @@
                   <name>{{ interface_mapping[inventory_hostname].number }}</name>
                   <mka xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
                     <policy>
-                      <name>MKA_{{ interface_mapping[inventory_hostname].type }}-{{ interface_mapping[inventory_hostname].number | replace('/', '-') }}</name>
+                      <name>MKA_POLICY</name>
                     </policy>
                   </mka>
                 </{{ interface_mapping[inventory_hostname].type }}>
