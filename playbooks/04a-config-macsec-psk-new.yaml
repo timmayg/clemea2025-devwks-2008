@@ -1,0 +1,140 @@
+---
+- name: 04a - Configure MACsec on Cat9300X TenGigabit1/0/1 Playbook using YANG Models
+  hosts: iosxe
+  connection: netconf
+  gather_facts: false
+
+  vars_files:
+   - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
+   - ~/clemea2025-devwks-2008/vaults/encrypted-pass.vault
+
+  vars:
+    interface_mapping:
+      "Cat9300-Pod0Xa#": { type: "TenGigabitEthernet", number: "1/0/1" }
+      "Cat9300-Pod0Xb#": { type: "GigabitEthernet", number: "1/0/1" }
+
+
+  tasks:
+
+    - name: 04a Task to Configure MKA PSK CKN and CAK
+      ansible.netcommon.netconf_config:
+        xml: |
+            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                <key>
+                  <chain xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+                    <name>MACSEC-KEY</name>
+                    <macsec/>
+                    <key>
+                      <id>1234</id>
+                      <cryptographic-algorithm-choice>
+                        <macsec>aes-256-cmac</macsec>
+                      </cryptographic-algorithm-choice>
+                      <key-string>
+                        <encryption>0</encryption>
+                        <key>{{ macsec_psk }}</key>
+                      </key-string>
+                    </key>
+                  </chain>
+                </key>
+              </native>
+            </config>
+
+    - name: 04b Task to Configure MKA Policy
+      ansible.netcommon.netconf_config:
+        xml: |
+            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                <mka>
+                  <policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
+                    <name>MKA_G-1-0-1</name>
+                    <macsec-cipher-suite>gcm-aes-256</macsec-cipher-suite>
+                  </policy>
+                  <suppress xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
+                    <syslogs>
+                      <sak-rekey>true</sak-rekey>
+                    </syslogs>
+                  </suppress>
+                </mka>
+              </native>
+            </config>
+
+
+    - name: 04c Configure Interface with MKA Policy
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }}>
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <mka xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
+                    <policy>
+                      <name>MKA_{{ interface_mapping[inventory_hostname].type }}-{{ interface_mapping[inventory_hostname].number | replace('/', '-') }}</name>
+                    </policy>
+                  </mka>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
+
+
+    - name: 04d Configure Interface with MKA Key
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }}>
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <mka xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-mka">
+                    <pre-shared-key>
+                      <key-chain>
+                        <name>MACSEC-KEY</name>
+                      </key-chain>
+                    </pre-shared-key>
+                  </mka>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
+
+
+    - name: 04e Configure MACsec Network Link on the Interface
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }}>
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <macsec-option xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                    <macsec>
+                      <network-link/>
+                    </macsec>
+                  </macsec-option>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
+
+
+    - name: 04f No Shut Interface
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }}>
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
+
+
