@@ -20,7 +20,8 @@ You will notice that this is a very long playbook with several tasks. Because al
 <br>
 <code>cat playbooks/04a-config-macsec-psk.yaml</code>
 <br><br>
-This task will shutdown the interface. When making changes like this the interface
+
+NOTE: THIS NEEDS TO BE UPDATED. This task will shutdown the interface. When making changes like this the interface
 should be shutdown. 
 <img src="/images/04-01-cat-shutdown-web.png" alt="" width=600>
 <br><br>
