@@ -1,0 +1,45 @@
+---
+- name: Test looping through interfaces
+  hosts: iosxe
+  connection: netconf
+  gather_facts: false
+
+  vars_files:
+   - ~/clemea2025-devwks-2008/vaults/ciscolive.vault
+   - ~/clemea2025-devwks-2008/vaults/encrypted-pass.vault
+
+  vars:
+    interface_mapping:
+      "Cat9300-Pod0Xa#": { type: "TenGigabitEthernet", number: "1/0/1" }
+      "Cat9300-Pod0Xb#": { type: "GigabitEthernet", number: "1/0/1" }
+
+  tasks:
+
+    - name: Task to Shutdown Interface Gig1/0/1
+      ansible.netcommon.netconf_config:
+        xml: |
+            <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+              <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+                <interface>
+                  <GigabitEthernet>
+                    <name>1/0/1</name>
+                    <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="merge"/>
+                  </GigabitEthernet>
+                </interface>
+              </native>
+            </config>
+
+    - name: No Shut Interfaces Based on Host
+      ansible.netcommon.netconf_config:
+        xml: |
+          <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <interface>
+                <{{ interface_mapping[inventory_hostname].type }}>
+                  <name>{{ interface_mapping[inventory_hostname].number }}</name>
+                  <shutdown xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete"/>
+                </{{ interface_mapping[inventory_hostname].type }}>
+              </interface>
+            </native>
+          </config>
+      when: inventory_hostname in interface_mapping
