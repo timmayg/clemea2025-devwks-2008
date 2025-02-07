@@ -16,7 +16,7 @@
 
   tasks:
 
-    - name: 04a Task to Configure MKA PSK CKN and CAK
+    - name: 04a Configure MKA PSK Keys (CKN and CAK)
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -40,7 +40,7 @@
               </native>
             </config>
 
-    - name: 04b Task to Configure MKA Policy
+    - name: 04b Build the MKA Policy, use AES-256-GCM
       ansible.netcommon.netconf_config:
         xml: |
             <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -60,7 +60,7 @@
             </config>
 
 
-    - name: 04c Configure Interface with MKA Policy
+    - name: 04c Configure the Interfaces with the MKA Policy
       ansible.netcommon.netconf_config:
         xml: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -80,7 +80,7 @@
       when: inventory_hostname in interface_mapping
 
 
-    - name: 04d Configure Interface with MKA Key
+    - name: 04d Configure the Interfaces with the MKA Key
       ansible.netcommon.netconf_config:
         xml: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
@@ -122,7 +122,7 @@
       when: inventory_hostname in interface_mapping
 
 
-    - name: 04f Task to No Shut Interface
+    - name: 04f No Shut the Interfaces
       ansible.netcommon.netconf_config:
         xml: |
           <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
