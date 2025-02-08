@@ -27,8 +27,6 @@ This task will configure the MKA Keys, which will be attached to the interface l
 <br><br>
 <img src="/images/04-03-cat-mka-policy-web.png" alt="" width=600>
 <br><br>
-<img src="/images/04-04-cat-interface-description-web.png" alt="" width=600>
-<br><br>
 <img src="/images/04-05-cat-int-mka-pol-web.png" alt="" width=600>
 <br><br>
 <img src="/images/04-06-cat-int-mka-key-web.png" alt="" width=600>
