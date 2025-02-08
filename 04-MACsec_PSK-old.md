@@ -21,7 +21,10 @@ You will notice that this is a very long playbook with several tasks. Because al
 <code>cat playbooks/04a-config-macsec-psk.yaml</code>
 <br><br>
 
-
+NOTE: THIS NEEDS TO BE UPDATED. This task will shutdown the interface. When making changes like this the interface
+should be shutdown. 
+<img src="/images/04-01-cat-shutdown-web.png" alt="" width=600>
+<br><br>
 This task will configure the MKA Keys, which will be attached to the interface later. The MKA Keys consist of a CKN (Connectivity Key Name) and a CAK (Connectivity Association Key). The CAK is the root of all other keys, including the SAK (Security Association Key), the actual key that does bulk data encryption.<br>
 <img src="/images/04-02-cat-ckn-cak-web.png" alt="" width=600>
 <br><br>
