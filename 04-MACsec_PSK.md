@@ -23,17 +23,22 @@ You will notice that this is a very long playbook with several tasks. Because al
 
 
 This task will configure the MKA Keys, which will be attached to the interface later. The MKA Keys consist of a CKN (Connectivity Key Name) and a CAK (Connectivity Association Key). The CAK is the root of all other keys, including the SAK (Security Association Key), the actual key that does bulk data encryption.<br>
-<img src="/images/04-02-cat-ckn-cak-web.png" alt="" width=600>
+<img src="/images/04-04a-configure-mka-keys-web.png" alt="" width=600>
 <br><br>
-<img src="/images/04-03-cat-mka-policy-web.png" alt="" width=600>
+This task will configure the MKA policy. Inside of the MKA policy we configure AES-256-GCM mode for the bulk data encryption.  
+<img src="/images/04-04b-configure-mka-policy-web.png" alt="" width=600>
 <br><br>
-<img src="/images/04-05-cat-int-mka-pol-web.png" alt="" width=600>
+This task will tie the MKA policy to the interfaces. 
+<img src="/images/04-04c-configure-interface-mka-policy-web.png" alt="" width=600>
 <br><br>
-<img src="/images/04-06-cat-int-mka-key-web.png" alt="" width=600>
+This task will tie the MKA keys to the interfaces.
+<img src="/images/04-04d-configure-interface-mka-key-web.png" alt="" width=600>
 <br><br>
-<img src="/images/04-07-cat-int-macsec-network-link-web.png" alt="" width=600>
+Now that we've tied the keys and the policy to the interfaces, its time to enable MACsec Network Link. This task enables MACsec data encryption on the interface. 
+<img src="/images/04-04e-configure-macsec-network-link-web.png" alt="" width=600>
 <br><br>
-<img src="/images/04-08-cat-no-shutdown-web.png" alt="" width=600>
+This task runs 'no shutdown' on the interfaces! 
+<img src="/images/04-04f-no-shut-interfaces-web.png" alt="" width=600>
 
 <br>
 
