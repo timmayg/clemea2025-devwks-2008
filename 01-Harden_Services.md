@@ -32,6 +32,15 @@ Note the following things in the Playbook
 <br><br><br>
 
 
+<li>View the contents of the encrypted Ansible Vault </li>
+Use the ansible-vault command to view the contents of the encrypted vault file listed in the vars_files section of the playbook. The encrypted vaults password is <b>abcd9876</b>.
+<br>
+<code>ansible-vault view vaults/ciscolive.vault </code>
+<br><br>
+<img src="/images/01-02a-ansible-vault-view-web.png" alt="View the Ansible Vault File" width=600>
+<br><br><br>
+
+
 <li>Now run the playbook.</li>
 This playbook will ensure that each algorithm uses highly secure primitives.
 You will be prompted for the vault password, the password is <b>abcd9876</b>.
