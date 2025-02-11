@@ -18,7 +18,7 @@ today. :-)
 <li>View the MACsec Playbook using cat </li>
 You will notice that this is a very long playbook with several tasks. Because all of these tasks are configured with NETCONF RPCs, putting them all into the same playbook is the most efficient. So now we will look at each of the RPCs in detail below. 
 <br>
-<code>cat playbooks/04a-config-macsec-psk.yaml</code>
+<code>cat playbooks/04a-config-macsec-psk-new.yaml</code>
 <br><br>
 
 
@@ -46,22 +46,11 @@ This task runs 'no shutdown' on the interfaces!
 <li>Run the Playbook on Cat9300X-PodA</li>
 Cat9300X-PodA has 10 Gb. Cat9300-PodB has 1 Gb interfaces. Because of the naming difference we will a slightly modified playbook to account for the internaface name difference. All tasks in the Playbook perform the same actions. 
 <br>
-<code>ansible-playbook -i inventories/cat9300-a.yaml playbooks/04a-config-macsec-psk.yaml --ask-vault-pass
+<code>ansible-playbook -i inventories/devnet-switches.yaml playbooks/04a-config-macsec-psk.yaml --ask-vault-pass
 </code>
 <br><br>
 <img src="/images/04-09a-playbook-output-macsec-web.png" alt="" width=600>
-<br><br><br>
-
-
-<li>Run the Playbook on Cat9300X-Podb</li>
-<br>
-<code>ansible-playbook -i inventories/cat9300-b.yaml playbooks/04b-config-macsec-psk.yaml --ask-vault-pass
-</code>
-<br><br>
-<img src="/images/04-09b-playbook-output-macsec-web.png" alt="" width=600>
-<br><br><br>
-
-
+<br><br><br> c
 
 
 <li>Check the MKA Status on the Switch </li>
