@@ -10,8 +10,3 @@ The Directory Structure on our Workstation is as follows.
 |--- vaults/       (Ansible Vault Files)  
 |
 |--- images/       (PNG files [screenshots] used in this lab guide)
-|
-|--- older/        (Just ignore this)
-
-
-
