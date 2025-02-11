@@ -2,9 +2,9 @@
 
 ## Thanks for attending!!!  I hope you enjoyed the lab!
 
-Please close all terminal windows. 
-Please close any open browser windows. 
-Let's make it easy for the next session. 
+Please close all terminal windows.<br>
+Please close any open browser windows.<br>
+Let's make it easy for the next session.<br>
 
 Thanks!
 
