@@ -1,7 +1,7 @@
 
 The Directory Structure on our Workstation is as follows.  
   
-/etc/ansible/  
+/Git-Repo
 |  
 |--- inventories/  (Inventory Files)  
 |  
@@ -9,5 +9,5 @@ The Directory Structure on our Workstation is as follows.
 |  
 |--- vaults/       (Ansible Vault Files)  
 |
-|--- images/       (PNG files [screenshots] used in this lab guide)
-|
+|--- images/       (Screenshots and other images used in this lab guide)
+
