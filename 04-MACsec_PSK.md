@@ -43,14 +43,15 @@ This task runs 'no shutdown' on the interfaces!
 <br>
 
 
-<li>Run the Playbook on Cat9300X-PodA</li>
-Cat9300X-PodA has 10 Gb. Cat9300-PodB has 1 Gb interfaces. Because of the naming difference we will a slightly modified playbook to account for the internaface name difference. All tasks in the Playbook perform the same actions. 
+<li>Run the Playbook on Cat9300 Switches</li>
+Cat9300X-PodA has 10 Gb. Cat9300-PodB has 1 Gb interfaces. 
+My AI coding assistant, ChatGPT helped me with this problem.  ChatGPT recommended that I use this dictionary that is mapped to my inventory file. 
 <br>
 <code>ansible-playbook -i inventories/devnet-switches.yaml playbooks/04a-config-macsec-psk.yaml --ask-vault-pass
 </code>
 <br><br>
 <img src="/images/04-09a-playbook-output-macsec-web.png" alt="" width=600>
-<br><br><br> c
+<br><br><br>
 
 
 <li>Check the MKA Status on the Switch </li>
